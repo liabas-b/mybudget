@@ -1,0 +1,4 @@
+%ul.accounts
+  - @accounts.each do |account|
+    %li.account
+      = link_to account.name, account_path(account)

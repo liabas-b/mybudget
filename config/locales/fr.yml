@@ -1,0 +1,6 @@
+fr:
+  frequency:
+    yearly: 'annuelle'
+    monthly: 'mensuelle'
+    weekly: 'hebdomadaire'
+    daily: 'quotidienne'
