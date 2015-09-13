@@ -15,7 +15,7 @@ class Account
   end
 
   def fold_simulated_operations_until(to_date)
-    simulated_account_operations.destroy_all
+    simulated_account_operations.delete_all
     start_date = Date.parse(Figaro.env.application_start_date)
     (start_date..to_date).each do |day|
       operations.each do |operation|

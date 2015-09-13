@@ -21,15 +21,23 @@ function refreshOperationsTable() {
   $('.datepicker').datepicker({
     changeMonth: true,
     changeYear: true,
+    minDate: 0,
     dateFormat: 'dd/mm/yy'
   });
 
   $('.select2').select2();
 }
 
+function initAccountForm() {
+  $('.edit_account').focusout(function() {
+    $(this).submit();
+  });
+}
+
 $(document).on('ready page:load', function(event) {
   initOperationsTable();
   refreshOperationsTable();
+  initAccountForm();
 });
 
 $(document).on('page:partial-load', function(event) {

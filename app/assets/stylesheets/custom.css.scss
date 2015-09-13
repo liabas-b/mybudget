@@ -17,7 +17,7 @@ body, * {
 }
 
 .title-background {
-  background: #2DA236 !important;
+  background: #99DB9E !important;
   border: #2DA236 !important;
   color: white;
 }
@@ -61,11 +61,32 @@ thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tb
   box-shadow: none !important;
   border: none !important;
   padding: 5px !important;
-  /*background: rgba(0,0,0,0.03) !important;*/
   border-radius: 0 !important;
 }
 .invisible-border:focus {
   background: rgba(0,0,0,0.05) !important;
+}
+.invisible-background {
+  background: rgba(255,255,255,0.2) !important;
+}
+
+.invisible-background::-webkit-input-placeholder {
+  color: white !important;
+}
+
+.invisible-background:-moz-placeholder { /* Firefox 18- */
+  color: white !important;
+}
+
+.invisible-background::-moz-placeholder {  /* Firefox 19+ */
+  color: white !important;
+}
+
+.invisible-background:-ms-input-placeholder {
+  color: white !important;
+}
+.invisible-background[placeholder] {
+  color: white !important;
 }
 
 td.with-input {
@@ -230,4 +251,30 @@ td.with-select {
 
 .right-padded {
   padding-right: 1em;
+}
+
+.edit_account {
+  label {
+    font-weight: 100;
+    color: lightgrey;
+    text-transform: uppercase;
+  }
+  .form-control {
+    font-size: 30px;
+    height: 44px;
+  }
+  overflow: hidden;
+}
+.text-center {
+  text-align: center;
+  * {
+    text-align: center;
+  }
+}
+
+#account-form-status {
+  position: absolute;
+  left: -40px;
+  top: -30px;
+  font-size: 240px;
 }

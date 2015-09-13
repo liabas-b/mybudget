@@ -9,7 +9,7 @@ class SimulatedAccountOperation
   field :outcome_id, type: String
 
   def name
-    income.present? ? income.name : (outcome.present? ? outcome.name : '-')
+    is_income? ? income.name : (is_outcome? ? outcome.name : '-')
   end
 
   def income
