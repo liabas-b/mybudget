@@ -1,0 +1,183 @@
+html {
+  background-color: #839098;
+}
+body, * {
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+#header {
+  height: 99px;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 2em !important;
+  background-clip: content-box;
+}
+.card-inner {
+  padding: 1em;
+}
+.last-card {
+  padding-left: 0em !important;
+}
+
+#page-container {
+  margin: 1em 1em 0 1em;
+  background-color: #FFFFFF;
+}
+
+.tr {
+  display: table-row;
+}
+thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+  border-top: none !important;
+}
+
+.danger {
+  color: #F76D3C !important;
+}
+
+.success {
+  color: #98CB4A !important;
+}
+
+.invisible-border {
+  box-shadow: none !important;
+  border: none !important;
+  padding: 5px !important;
+  /*background: rgba(0,0,0,0.03) !important;*/
+  border-radius: 0 !important;
+}
+.invisible-border:focus {
+  background: rgba(0,0,0,0.05) !important;
+}
+
+td.with-input {
+  padding: 0 !important;
+}
+
+td.with-select {
+  padding-bottom: 0 !important;
+}
+
+.table-hover > tbody > tr:hover {
+  background-color: rgba(0,0,0,0.03) !important;
+}
+
+.errored {
+  box-shadow: inset 0px 0px 1px 1px rgba(255,0,0,0.5) !important;
+}
+
+#ui-datepicker-div {
+  font-size: smaller;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0 !important;
+}
+
+.datepicker {
+  z-index: 1200 !important;
+}
+
+.simulated-sold {
+  text-align: center;
+  font-size: 12;
+  color: green;
+}
+
+
+::-webkit-input-placeholder {
+    color: #545454;
+}
+:-moz-placeholder {
+    color: #545454;
+}
+::-moz-placeholder {
+    color: #545454;
+}
+:-ms-input-placeholder {
+    color: #545454;
+}
+
+/* Different color for some fields */
+
+#operation_name::-webkit-input-placeholder,
+#operation_description::-webkit-input-placeholder,
+#operation_amount::-webkit-input-placeholder,
+#operation_date::-webkit-input-placeholder,
+#operation_date_from::-webkit-input-placeholder,
+#operation_date_to::-webkit-input-placeholder {
+  color: #545454;
+}
+
+#operation_name::-moz-input-placeholder,
+#operation_description::-moz-input-placeholder,
+#operation_amount::-moz-input-placeholder,
+#operation_date::-moz-input-placeholder,
+#operation_date_from::-moz-input-placeholder,
+#operation_date_to::-moz-input-placeholder {
+  color: #545454;
+}
+
+#operation_name::-moz-placeholder,
+#operation_description::-moz-placeholder,
+#operation_amount::-moz-placeholder,
+#operation_date::-moz-placeholder,
+#operation_date_from::-moz-placeholder,
+#operation_date_to::-moz-placeholder {
+  color: #545454;
+}
+
+#operation_name::-ms-input-placeholder,
+#operation_description::-ms-input-placeholder,
+#operation_amount::-ms-input-placeholder,
+#operation_date::-ms-input-placeholder,
+#operation_date_from::-ms-input-placeholder,
+#operation_date_to::-ms-input-placeholder {
+  color: #545454;
+}
+
+.rounded {
+  border-radius: 250px !important;
+}
+
+.popover-content {
+  width: 200px;
+}
+
+.popover, .btn:not(.rounded), .select2-drop, .select2-choice, .select2-arrow {
+  border-radius: 0 !important;
+}
+
+.full {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: .75em !important;
+  width: 100%;
+}
+
+.bottom {
+  bottom: 0;
+}
+
+.select2-drop {
+  border: 1px solid lightgray !important;
+}
+
+.select2-choice {
+  border: 1px solid lightgray !important;
+  border-top: none !important;
+  background: none !important;
+}
+
+.select2-arrow {
+  background: none !important;
+  border: none !important;
+}
+
+.select2-input {
+  margin-top: 5px;
+}

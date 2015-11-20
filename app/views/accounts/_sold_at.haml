@@ -1,0 +1,15 @@
+- if @simulated_sold
+  .simulated-sold= @simulated_sold
+  %table.table.table-condensed.no-margin-bottom
+    %thead
+      %th Date
+      %th Nom
+      %th Montant
+    %tbody
+      - @account.simulated_account_operations.each do |operation|
+        %tr
+          %td= operation.date.strftime('%d/%m/%Y')
+          %td= operation.name
+          %td
+            %div{ class: "#{operation.is_income? ? 'success' : 'danger' }" }
+              %strong= operation.amount

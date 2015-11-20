@@ -9,7 +9,6 @@ class SimulatedAccountOperation
   field :outcome_id, type: String
 
   def name
-    puts "#{income.inspect} - #{outcome.inspect}"
     income.present? ? income.name : (outcome.present? ? outcome.name : '-')
   end
 
@@ -19,6 +18,14 @@ class SimulatedAccountOperation
 
   def outcome
     account.outcomes.find(outcome_id) if outcome_id
+  end
+
+  def is_income?
+    income.present?
+  end
+
+  def is_outcome?
+    outcome.present?
   end
 
 end

@@ -1,19 +1,21 @@
-%table.table.table-condensed.table-hover.table-striped
+%table.table.table-condensed.table-hover
   %tbody
     - @operations.each do |operation|
-      %tr{ class: "#{operation.is_income? ? 'success' : 'danger' }" }
+      %tr
         %th.col-md-2= operation.name
-        %td.col-md-2= operation.description
-        %td.col-md-2= operation.amount
+        %td.col-md-4= operation.description
+        %td.col-md-1
+          %div{ class: "#{operation.is_income? ? 'success' : 'danger' }" }
+            %strong= operation.amount
         %td.col-md-1= operation.date.strftime('%d/%m/%Y')
         %td.col-md-1= operation.date_from.strftime('%d/%m/%Y') if operation.date_from
         %td.col-md-1= operation.date_to.strftime('%d/%m/%Y') if operation.date_to
-        %td.col-md-2
+        %td
           - if operation.is_recurrent?
-            .label.label-default= I18n.t("frequency.#{operation.frequency}")
+            = I18n.t("frequency.#{operation.frequency}").upcase
           - else
-            .label.label-default Ponctuel
-        %td.col-md-1
+            PONCTUELLE
+        %td
           = form_for(operation, url: operation_path(id: operation.id, account_id: @account.id.to_s), method: :delete, remote: true, html: { class: 'remove-operation pull-right' }) do |f|
-            %button#remove-operation.btn.btn-danger.btn-xs{ type: 'button' }
+            %button#remove-operation.btn.btn-danger.btn-xs.rounded{ type: 'button' }
               %i.glyphicon.glyphicon-minus
