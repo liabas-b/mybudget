@@ -5,8 +5,8 @@
         %th.col-md-2= operation.name
         %td.col-md-4= operation.description
         %td.col-md-1
-          %div{ class: "#{operation.is_income? ? 'success' : 'danger' }" }
-            %strong= operation.amount
+          %div{ class: "#{operation.is_income? ? 'success' : 'danger' } pull-right right-padded" }
+            %strong= "#{number_with_precision(operation.amount, locale: :fr, precision: 2)}€"
         %td.col-md-1= operation.date.strftime('%d/%m/%Y')
         %td.col-md-1= operation.date_from.strftime('%d/%m/%Y') if operation.date_from
         %td.col-md-1= operation.date_to.strftime('%d/%m/%Y') if operation.date_to

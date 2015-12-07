@@ -1,5 +1,5 @@
 html {
-  background-color: #839098;
+  background-color: #FFFFFF;
 }
 body, * {
   font-family: 'Open Sans', sans-serif !important;
@@ -10,9 +10,24 @@ body, * {
   padding: 20px;
 }
 
+.blue-background {
+  background: #1B1B48 !important;
+  border: #1B1B48 !important;
+  color: white;
+}
+
+.title-background {
+  background: #2DA236 !important;
+  border: #2DA236 !important;
+  color: white;
+}
+
 .card {
   background: white;
-  padding: 2em !important;
+  padding: 0;
+  border: 1px solid #F2F2F2;
+  margin-bottom: -1px;
+  margin-right: -1px;
   background-clip: content-box;
 }
 .card-inner {
@@ -83,8 +98,9 @@ td.with-select {
 
 .simulated-sold {
   text-align: center;
-  font-size: 12;
+  font-size: 28px;
   color: green;
+  margin: 1em;
 }
 
 
@@ -180,4 +196,38 @@ td.with-select {
 
 .select2-input {
   margin-top: 5px;
+}
+
+.btn-xs.rounded {
+  width: 25px;
+  height: 25px;
+}
+
+#add-operation {
+  margin-right: 6px;
+  margin-top: -3px;
+}
+
+.table {
+  margin-bottom: 0 !important;
+}
+
+.fluid {
+  width: 100%;
+}
+
+.select2-search {
+  margin-top: 4px !important;
+}
+.select2-choice {
+  border: none !important;
+}
+
+#simulation-form {
+  margin-top: -8px;
+  margin-right: 6px;
+}
+
+.right-padded {
+  padding-right: 1em;
 }

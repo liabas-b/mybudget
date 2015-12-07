@@ -1,8 +1,8 @@
 function initOperationsTable() {
-  $('#add-operation').click(function(event) {
-    event.preventDefault();
-    $('#new_operation').submit();
-  });
+  // $('#add-operation').click(function(event) {
+  //   event.preventDefault();
+  //   $('#new_operation').submit();
+  // });
 }
 
 function refreshOperationsTable() {

@@ -1,31 +1,53 @@
 .row
-  .col-md-8.card
+  .col-md-12.card.title-background
     .card-inner
-      %a.btn.btn-xs.btn-success.pull-right.rounded{"data-content" => render('operations/add'), "data-toggle" => "popover", :role => "button", :tabindex => "0"}
+      Opérations
+      %a#add-operation.btn.btn-xs.btn-success.pull-right.rounded{"data-target" => "#add-operation-modal", "data-toggle" => "modal", :role => "button", :tabindex => "0"}
         %i.glyphicon.glyphicon-plus
+.row
+  .col-md-12.card
+    .card-inner
       #operations
         = render 'operations/table'
-  .col-md-4.card.last-card
+
+.row
+  .col-md-12.card.title-background
     .card-inner
-      %ul.nav.navbar-nav
-        - if defined?(@account)
-          %li
-            %a.btn{"data-target" => "#simulation-modal", "data-toggle" => "modal", :type => "button"}
-              SIMULATION
-    - if defined?(@account)
-      #simulation-modal.modal.fade{"aria-labelledby" => "simulation-label", :role => "dialog", :tabindex => "-1"}
-        .modal-dialog.modal-lg{:role => "document"}
-          .modal-content
-            = form_tag(:sold_at_account, url: sold_at_account_path(@account), method: :post, remote: true) do
-              .modal-header
-                %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-                  %span{"aria-hidden" => "true"} ×
-                %h4#simulation-label.modal-title SIMULATION
-              .modal-body
-                .input-group
-                  = text_field_tag 'simulation[date]', nil, class: 'form-control datepicker', placeholder: 'Date'
-                  %span.input-group-btn
-                    %button.btn.btn-success{:type => "submit"} Launch simulation
-                #simulation-results
-              .modal-footer
-                %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+      Simulation
+      = form_tag(:sold_at_account, url: sold_at_account_path(@account), method: :post, remote: true, class: 'form-inline pull-right', id: 'simulation-form') do
+        .form-group
+          = text_field_tag 'simulation[date]', nil, class: 'form-control datepicker invisible-border', placeholder: 'Date'
+        .form-group
+          %button.btn.btn-success{:type => "submit"} LANCER
+.row
+  .col-md-12.card
+    .card-inner
+      #simulation-results
+
+#add-operation-modal.modal.fade{:role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-lg{:role => "document"}
+    .modal-content
+      = form_tag(operations_path, method: :post, remote: true, id: 'new_operation') do
+        .modal-header
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+          %h4.modal-title OPERATION
+        .modal-body
+          .form-group
+            = text_field_tag 'operation[name]', nil, class: 'form-control invisible-border', placeholder: 'Nom'
+          .form-group
+            = text_field_tag 'operation[description]', nil, class: 'form-control invisible-border', placeholder: 'Description'
+          .form-group
+            = text_field_tag 'operation[amount]', nil, class: 'form-control invisible-border', placeholder: 'Montant'
+          .form-group
+            = text_field_tag 'operation[date]', nil, class: 'form-control invisible-border datepicker', placeholder: 'Date'
+          .form-group
+            = text_field_tag 'operation[date_from]', nil, class: 'form-control invisible-border datepicker', placeholder: 'Du'
+          .form-group
+            = text_field_tag 'operation[date_to]', nil, class: 'form-control invisible-border datepicker', placeholder: 'Au'
+          .form-group
+            = select_tag('operation[frequency]', options_for_select(@frequencies_for_select), { class: 'select2 fluid', prompt: 'Fréquence'})
+          = hidden_field_tag 'operation[account_id]', @account.id.to_s
+        .modal-footer
+          %button.btn.btn-success{:type => "submit"} CREER
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} FERMER

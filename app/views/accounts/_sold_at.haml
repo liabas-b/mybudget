@@ -12,4 +12,4 @@
           %td= operation.name
           %td
             %div{ class: "#{operation.is_income? ? 'success' : 'danger' }" }
-              %strong= operation.amount
+              %strong= "#{operation.amount.round(2)}€"
