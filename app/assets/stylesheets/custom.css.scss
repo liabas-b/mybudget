@@ -2,12 +2,13 @@ html {
   background-color: #FFFFFF;
 }
 body, * {
-  font-family: 'Open Sans', sans-serif !important;
+//  font-family: 'Open Sans', sans-serif !important;
 }
 
 #header {
   height: 99px;
   padding: 20px;
+  border-radius: 0;
 }
 
 .blue-background {
@@ -17,7 +18,7 @@ body, * {
 }
 
 .title-background {
-  background: #99DB9E !important;
+  background: #3D7E42 !important;
   border: #2DA236 !important;
   color: white;
 }
@@ -25,7 +26,7 @@ body, * {
 .card {
   background: white;
   padding: 0;
-  border: 1px solid #F2F2F2;
+  border: none;
   margin-bottom: -1px;
   margin-right: -1px;
   background-clip: content-box;
@@ -178,6 +179,10 @@ td.with-select {
 
 .rounded {
   border-radius: 250px !important;
+}
+.btn.rounded .glyphicon {
+  margin-left: 1px;
+  margin-top: 3px;
 }
 
 .popover-content {
