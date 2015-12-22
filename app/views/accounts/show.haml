@@ -1,4 +1,17 @@
 .row
+  .col-md-12.card
+    .card-inner
+      %i#account-form-status.glyphicon.glyphicon-ok
+      = form_for(@account, remote: true, class: 'form-inline', id: 'edit-account-form') do |f|
+        .row
+          .col-md-4.text-center
+            %label Nom du compte
+            = f.text_field :name, class: 'form-control invisible-border', placeholder: 'Nom'
+          .col-md-4.text-center
+            %label= "Solde le #{@account.sold_date.strftime('%d/%m/%Y')}"
+            = f.text_field :sold, class: 'form-control invisible-border', placeholder: 'Solde courrant'
+          .col-md-4.text-center
+.row
   .col-md-12.card.title-background
     .card-inner
       Opérations
@@ -16,13 +29,10 @@
       Simulation
       = form_tag(:sold_at_account, url: sold_at_account_path(@account), method: :post, remote: true, class: 'form-inline pull-right', id: 'simulation-form') do
         .form-group
-          = text_field_tag 'simulation[date]', nil, class: 'form-control datepicker invisible-border', placeholder: 'Date'
+          = text_field_tag 'simulation[date]', @default_simulation_date.strftime('%d/%m/%Y'), class: 'form-control datepicker invisible-border invisible-background', placeholder: 'Date'
         .form-group
           %button.btn.btn-success{:type => "submit"} LANCER
-.row
-  .col-md-12.card
-    .card-inner
-      #simulation-results
+#simulation-results
 
 #add-operation-modal.modal.fade{:role => "dialog", :tabindex => "-1"}
   .modal-dialog.modal-lg{:role => "document"}

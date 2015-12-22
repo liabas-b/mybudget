@@ -16,9 +16,9 @@ class Operation
 
   def to_simulated_account_operation(operation_date = nil)
     if _type == 'Income'
-      { amount: processed_amount, date: operation_date || date, income_id: id }
+      { amount: amount, date: operation_date || date, income_id: id }
     else
-      { amount: processed_amount, date: operation_date || date, outcome_id: id }
+      { amount: amount, date: operation_date || date, outcome_id: id }
     end
   end
 

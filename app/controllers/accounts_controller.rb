@@ -3,6 +3,16 @@ class AccountsController < ApplicationController
 
   def show
     init_account(params[:id])
+    @default_simulation_date = Date.today
+  end
+
+  def update
+    @account = Account.find(params[:id])
+
+     if @account.update(params.require(:account).permit([:name, :sold]))
+      @account.update(sold_date: DateTime.now)
+    end
+    respond_to :js
   end
 
   def sold_at
