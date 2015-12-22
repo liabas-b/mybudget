@@ -1,5 +1,23 @@
-#header.blue-background
-  - if defined?(@account)
-    .navbar-brand= @account.name.upcase
-  - else
-    .navbar-brand MY BUDGET
+%nav#header.blue-background.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      - if defined?(@account)
+        = link_to @account.name.upcase, account_path(@account), class: 'navbar-brand'
+      - else
+        = link_to 'MY BUDGET', root_path, class: 'navbar-brand'
+
+    #navbar-collapse.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Accounts
+            %span.caret
+          %ul.dropdown-menu
+            - @accounts.each do |account|
+              %li.account
+                = link_to account.name, account_path(account)

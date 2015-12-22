@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  include AccountsHelper
+  before_filter :init_accounts
 
   def show
     init_account(params[:id])
