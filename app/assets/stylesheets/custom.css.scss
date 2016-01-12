@@ -6,9 +6,19 @@ body, * {
 }
 
 #header {
-  height: 99px;
-  padding: 20px;
   border-radius: 0;
+  margin: 0;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a {
+  color: #FFFFFF !important;
+}
+//.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+//  background: rgba(0,0,0,0.2) !important;
+//}
+
+.row {
+  margin: 0 !important;
 }
 
 .blue-background {
@@ -19,7 +29,7 @@ body, * {
 
 .title-background {
   background: #3D7E42 !important;
-  border: #2DA236 !important;
+  border: #3D7E42 !important;
   color: white;
 }
 
@@ -27,10 +37,13 @@ body, * {
   background: white;
   padding: 0;
   border: none;
-  margin-bottom: -1px;
-  margin-right: -1px;
   background-clip: content-box;
 }
+.card.white {
+  padding-top: 3em;
+  padding-bottom: 3em;
+}
+
 .card-inner {
   padding: 1em;
 }
@@ -54,6 +67,10 @@ thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tb
   color: #F76D3C !important;
 }
 
+.warning {
+  color: #CB854A !important;
+}
+
 .success {
   color: #98CB4A !important;
 }
@@ -68,7 +85,7 @@ thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tb
   background: rgba(0,0,0,0.05) !important;
 }
 .invisible-background {
-  background: rgba(255,255,255,0.2) !important;
+  background: rgba(255,255,255,0) !important;
 }
 
 .invisible-background::-webkit-input-placeholder {
@@ -120,9 +137,8 @@ td.with-select {
 
 .simulated-sold {
   text-align: center;
-  font-size: 28px;
-  color: green;
-  margin: 1em;
+  font-size: 42px;
+  color: #3D7E42;
 }
 
 
@@ -261,7 +277,7 @@ td.with-select {
 .edit_account {
   label {
     font-weight: 100;
-    color: lightgrey;
+    color: #8D94BA;
     text-transform: uppercase;
   }
   .form-control {
@@ -279,7 +295,24 @@ td.with-select {
 
 #account-form-status {
   position: absolute;
-  left: -40px;
-  top: -30px;
-  font-size: 240px;
+  right: 2em;
+  top: 1em;
+}
+
+#remove-operation {
+  i {
+    margin-left: 0px;
+    margin-top: 2px;
+  }
+}
+
+#simulation_date {
+  width: 100px;
+  text-align: center;
+}
+
+.simulation-header label {
+  font-weight: 100;
+  color: #8D94BA;
+  text-transform: uppercase;
 }

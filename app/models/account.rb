@@ -16,8 +16,9 @@ class Account
 
   def fold_simulated_operations_until(to_date)
     simulated_account_operations.delete_all
-    start_date = Date.parse(Figaro.env.application_start_date)
-    (start_date..to_date).each do |day|
+    # start_date = Date.parse(Figaro.env.application_start_date)
+    (sold_date..to_date).each do |day|
+      puts "Processing day: #{day}"
       operations.each do |operation|
         if operation.is_on_day?(day)
           simulated_account_operations.create!(operation.to_simulated_account_operation(day))

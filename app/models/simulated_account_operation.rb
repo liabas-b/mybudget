@@ -20,6 +20,10 @@ class SimulatedAccountOperation
     account.outcomes.find(outcome_id) if outcome_id
   end
 
+  def operation
+    is_income? ? income : outcome
+  end
+
   def is_income?
     income.present?
   end

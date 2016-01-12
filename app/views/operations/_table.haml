@@ -18,4 +18,4 @@
         %td
           = form_for(operation, url: operation_path(id: operation.id, account_id: @account.id.to_s), method: :delete, remote: true, html: { class: 'remove-operation pull-right' }) do |f|
             %button#remove-operation.btn.btn-danger.btn-xs.rounded{ type: 'button' }
-              %i.glyphicon.glyphicon-minus
+              %i.glyphicon.glyphicon-trash

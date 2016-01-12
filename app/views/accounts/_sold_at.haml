@@ -1,17 +1,25 @@
 - if @simulated_sold
   .row
-    .col-md-12.card
+    .col-md-12.card.white.text-center.simulation-header
       .card-inner
+        %label= "Solde le #{@simulation_date}"
         .simulated-sold= "#{number_with_precision(@simulated_sold, locale: :fr, precision: 2)}€"
   .row
-    .col-md-12.card
+    .col-md-12.card.white
       .card-inner
-        %table.table.table-condensed.table-hover.no-margin-bottom
+        %table.table.table-condensed.table-hover
           %tbody
-            - @account.simulated_account_operations.each do |operation|
+            - @account.simulated_account_operations.each do |simulated_operation|
               %tr
-                %td= operation.date.strftime('%d/%m/%Y')
+                %th.col-md-2= simulated_operation.operation.name
+                %td.col-md-4= simulated_operation.operation.description
+                %td.col-md-1
+                  %div{ class: "#{simulated_operation.operation.is_income? ? 'success' : 'danger' } pull-right right-padded" }
+                    %strong= "#{number_with_precision(simulated_operation.operation.amount, locale: :fr, precision: 2)}€"
+                %td.col-md-3= simulated_operation.date.strftime('%d/%m/%Y')
                 %td
-                  %div{ class: "#{operation.is_income? ? 'success' : 'danger' }" }
-                    %strong= "#{number_with_precision(operation.amount, locale: :fr, precision: 2)}€"
-                %td= operation.name
+                  - if simulated_operation.operation.is_recurrent?
+                    = I18n.t("frequency.#{simulated_operation.operation.frequency}").upcase
+                  - else
+                    PONCTUELLE
+                %td

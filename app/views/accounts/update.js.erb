@@ -1,1 +1,2 @@
-$('#account-form-status').removeClass('pending').addClass('success');
+$('#account-form-status').removeClass('warning').addClass('success');
+$('#account-sold-date').html("<%= @account.sold_date.strftime('%d/%m/%Y') %>")

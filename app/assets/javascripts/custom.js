@@ -29,8 +29,16 @@ function refreshOperationsTable() {
 }
 
 function initAccountForm() {
+  var savedSold = $('#account_sold').val();
+  var savedName = $('#account_name').val();
+  $('.edit_account').focusin(function() {
+    $('#account-form-status').removeClass('success').addClass('warning');
+  });
   $('.edit_account').focusout(function() {
-    $(this).submit();
+    if (savedSold !== $('#account_sold').val() || savedName !== $('#account_name').val())
+      $(this).submit();
+    else
+      $('#account-form-status').removeClass('warning').addClass('success');
   });
 }
 

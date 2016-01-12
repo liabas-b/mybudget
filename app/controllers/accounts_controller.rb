@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
 
   def show
     init_account(params[:id])
-    @default_simulation_date = Date.today
+    @default_simulation_date = Date.today.end_of_month
   end
 
   def update

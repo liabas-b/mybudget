@@ -1,16 +1,17 @@
 .row
-  .col-md-12.card
+  .col-md-12.card.white
     .card-inner
-      %i#account-form-status.glyphicon.glyphicon-ok
+      %i#account-form-status.glyphicon.glyphicon-ok.success
       = form_for(@account, remote: true, class: 'form-inline', id: 'edit-account-form') do |f|
         .row
-          .col-md-4.text-center
+          .col-md-6.text-center
             %label Nom du compte
             = f.text_field :name, class: 'form-control invisible-border', placeholder: 'Nom'
-          .col-md-4.text-center
-            %label= "Solde le #{@account.sold_date.strftime('%d/%m/%Y')}"
+          .col-md-6.text-center
+            %label
+              Solde le
+              %span#account-sold-date= @account.sold_date.strftime('%d/%m/%Y')
             = f.text_field :sold, class: 'form-control invisible-border', placeholder: 'Solde courrant'
-          .col-md-4.text-center
 .row
   .col-md-12.card.title-background
     .card-inner
@@ -18,7 +19,7 @@
       %a#add-operation.btn.btn-xs.btn-success.pull-right.rounded{"data-target" => "#add-operation-modal", "data-toggle" => "modal", :role => "button", :tabindex => "0"}
         %i.glyphicon.glyphicon-plus
 .row
-  .col-md-12.card
+  .col-md-12.card.white
     .card-inner
       #operations
         = render 'operations/table'
@@ -29,9 +30,10 @@
       Simulation
       = form_tag(:sold_at_account, url: sold_at_account_path(@account), method: :post, remote: true, class: 'form-inline pull-right', id: 'simulation-form') do
         .form-group
-          = text_field_tag 'simulation[date]', @default_simulation_date.strftime('%d/%m/%Y'), class: 'form-control datepicker invisible-border invisible-background', placeholder: 'Date'
-        .form-group
-          %button.btn.btn-success{:type => "submit"} LANCER
+          .input-group
+            = text_field_tag 'simulation[date]', @default_simulation_date.strftime('%d/%m/%Y'), class: 'form-control datepicker invisible-border invisible-background', placeholder: 'Date'
+            %span.input-group-btn
+              %button.btn.btn-success{:type => "submit"} LANCER
 #simulation-results
 
 #add-operation-modal.modal.fade{:role => "dialog", :tabindex => "-1"}
