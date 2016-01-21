@@ -1,18 +1,8 @@
-class Account
+class Account < ActiveRecord::Base
   include Mongoid::Document
 
-  embeds_many :incomes
-  embeds_many :outcomes
-  embeds_many :simulated_account_operations
-
-  field :name, type: String
-  field :description, type: String
-  field :sold, type: Float
-  field :sold_date, type: DateTime
-
-  def operations
-    [incomes.to_a + outcomes.to_a].flatten.sort{ |a,b| a.date <=> b.date }
-  end
+  has_many :operations
+  has_many :simulated_account_operations
 
   def fold_simulated_operations_until(to_date)
     simulated_account_operations.delete_all

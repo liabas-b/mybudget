@@ -1,35 +1,8 @@
-class SimulatedAccountOperation
-  include Mongoid::Document
-
-  embedded_in :account
-
-  field :amount, type: Float
-  field :date, type: DateTime
-  field :income_id, type: String
-  field :outcome_id, type: String
+class SimulatedAccountOperation < ActiveRecord::Base
+  belongs_to :account
+  belongs_to :operation
 
   def name
-    is_income? ? income.name : (is_outcome? ? outcome.name : '-')
+    "Simulated #{operation.name}"
   end
-
-  def income
-    account.incomes.find(income_id) if income_id
-  end
-
-  def outcome
-    account.outcomes.find(outcome_id) if outcome_id
-  end
-
-  def operation
-    is_income? ? income : outcome
-  end
-
-  def is_income?
-    income.present?
-  end
-
-  def is_outcome?
-    outcome.present?
-  end
-
 end

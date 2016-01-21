@@ -1,33 +1,20 @@
-class Operation
-  include Mongoid::Document
-
-  field :name, type: String
-  field :description, type: String
-  field :amount, type: Float
-  field :date, type: DateTime
-  field :date_from, type: DateTime
-  field :date_to, type: DateTime
-  field :is_recurrent, type: Boolean, default: false
-  field :frequency, type: String
+class Operation < ActiveRecord::Base
+  belongs_to :account
 
   validates :name, presence: true
   validates :date, presence: true
   validates :amount, presence: true
 
   def to_simulated_account_operation(operation_date = nil)
-    if _type == 'Income'
-      { amount: amount, date: operation_date || date, income_id: id }
-    else
-      { amount: amount, date: operation_date || date, outcome_id: id }
-    end
+    { amount: amount, date: operation_date || date, operation_id: id }
   end
 
   def is_income?
-    self.class.to_s == 'Income'
+    amount >= 0
   end
 
   def is_outcome?
-    self.class.to_s == 'Outcome'
+    amount < 0
   end
 
   def is_on_day?(day)
