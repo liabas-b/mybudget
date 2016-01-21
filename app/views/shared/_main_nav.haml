@@ -21,3 +21,5 @@
             - @accounts.each do |account|
               %li.account
                 = link_to account.name, account_path(account)
+            %li.account
+              = link_to 'Créer un compte', new_account_path

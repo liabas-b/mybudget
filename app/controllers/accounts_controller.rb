@@ -21,4 +21,11 @@ class AccountsController < ApplicationController
     @simulated_sold = @simulation_date.present? ? @account.sold_at(@simulation_date) : nil
     respond_to :js
   end
+
+  def new
+    @new_account = Account.new(sold: 0, sold_date: Date.today)
+  end
+
+  def create
+  end
 end

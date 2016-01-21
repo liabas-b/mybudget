@@ -43,6 +43,9 @@ body, * {
   padding-top: 3em;
   padding-bottom: 3em;
 }
+.card.condensed {
+  padding: 0 1em;
+}
 
 .card-inner {
   padding: 1em;
@@ -105,6 +108,9 @@ thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tb
 }
 .invisible-background[placeholder] {
   color: white !important;
+}
+.invisible-border.very-light {
+  background: rgba(0,0,0,0.04) !important;
 }
 
 td.with-input {
@@ -274,12 +280,13 @@ td.with-select {
   padding-right: 1em;
 }
 
+.light-label {
+  font-weight: 100;
+  color: #8D94BA;
+  text-transform: uppercase;
+}
+
 .edit_account {
-  label {
-    font-weight: 100;
-    color: #8D94BA;
-    text-transform: uppercase;
-  }
   .form-control {
     font-size: 30px;
     height: 44px;

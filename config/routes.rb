@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :accounts, only: [:show, :update] do
+  resources :accounts, only: [:show, :update, :new, :create] do
     member do
       post :sold_at
     end

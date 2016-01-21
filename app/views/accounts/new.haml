@@ -1,0 +1,38 @@
+.row
+  .col-md-12.card.white.condensed
+    .card-inner
+      .row
+        .col-md-3
+        .col-md-6.text-center
+          %h1 Créer un compte
+        .col-md-3
+= form_for(@new_account, remote: true, class: 'form-inline') do |f|
+  .row
+    .col-md-12.card.white.condensed
+      .card-inner
+        .row
+          .col-md-3
+          .col-md-6.text-center
+            %label.light-label Nom du compte
+            = f.text_field :name, class: 'form-control very-light invisible-border'
+          .col-md-3
+  .row
+    .col-md-12.card.white.condensed
+      .card-inner
+        .row
+          .col-md-3
+          .col-md-6.text-center
+            %label.light-label Description
+            = f.text_field :description, class: 'form-control very-light invisible-border'
+          .col-md-3
+  .row
+    .col-md-12.card.white.condensed
+      .card-inner
+        .row
+          .col-md-3
+          .col-md-6.text-center
+            %label.light-label
+              Solde le
+              %span#account-sold-date= @new_account.sold_date.strftime('%d/%m/%Y')
+            = f.text_field :sold, class: 'form-control very-light invisible-border'
+          .col-md-3

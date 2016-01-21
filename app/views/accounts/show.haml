@@ -5,10 +5,10 @@
       = form_for(@account, remote: true, class: 'form-inline', id: 'edit-account-form') do |f|
         .row
           .col-md-6.text-center
-            %label Nom du compte
+            %label.light-label Nom du compte
             = f.text_field :name, class: 'form-control invisible-border', placeholder: 'Nom'
           .col-md-6.text-center
-            %label
+            %label.light-label
               Solde le
               %span#account-sold-date= @account.sold_date.strftime('%d/%m/%Y')
             = f.text_field :sold, class: 'form-control invisible-border', placeholder: 'Solde courrant'

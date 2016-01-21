@@ -1,5 +1,18 @@
+# == Schema Information
+#
+# Table name: accounts
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  description :string(255)
+#  sold        :float
+#  sold_date   :datetime
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 class Account < ActiveRecord::Base
-  include Mongoid::Document
+  validates :name, presence: true
 
   has_many :operations
   has_many :simulated_account_operations

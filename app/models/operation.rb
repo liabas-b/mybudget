@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: operations
+#
+#  id           :integer          not null, primary key
+#  name         :string(255)
+#  description  :string(255)
+#  amount       :float
+#  date         :datetime
+#  date_from    :datetime
+#  date_to      :datetime
+#  is_recurrent :boolean          default(FALSE)
+#  frequency    :string(255)
+#  account_id   :integer
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
 class Operation < ActiveRecord::Base
   belongs_to :account
 
