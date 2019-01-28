@@ -1,0 +1,6 @@
+$('#edit-operation-modal').modal('hide');
+setTimeout(function() {
+  $('#edit-operation-modal-container').html('');
+  $('#operations').html('<%= escape_javascript(render :partial => "operations/table") %>')
+  refreshOperationsTable();
+}, 500);

@@ -1,50 +1,41 @@
 html {
   background-color: #FFFFFF;
 }
-body, * {
-//  font-family: 'Open Sans', sans-serif !important;
-}
 
 #header {
   border-radius: 0;
   margin: 0;
 }
 
-.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a {
-  color: #FFFFFF !important;
-}
-//.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-//  background: rgba(0,0,0,0.2) !important;
-//}
-
 .row {
   margin: 0 !important;
 }
 
-.blue-background {
-  background: #1B1B48 !important;
-  border: #1B1B48 !important;
-  color: white;
-}
-
-.title-background {
-  background: #3D7E42 !important;
-  border: #3D7E42 !important;
-  color: white;
-}
-
 .card {
-  background: white;
   padding: 0;
-  border: none;
   background-clip: content-box;
+  border: none;
 }
 .card.white {
-  padding-top: 3em;
-  padding-bottom: 3em;
+  background: white;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 .card.condensed {
   padding: 0 1em;
+}
+.card.title {
+  background-color: #f8f8f8;
+  border: none;
+  border-top: 1px solid #e7e7e7;
+  border-bottom: 1px solid #e7e7e7;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
 }
 
 .card-inner {
@@ -251,11 +242,6 @@ td.with-select {
   height: 25px;
 }
 
-#add-operation {
-  margin-right: 6px;
-  margin-top: -3px;
-}
-
 .table {
   margin-bottom: 0 !important;
 }
@@ -282,7 +268,7 @@ td.with-select {
 
 .light-label {
   font-weight: 100;
-  color: #8D94BA;
+  color: #777777;
   text-transform: uppercase;
 }
 

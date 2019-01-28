@@ -1,0 +1,8 @@
+= f.hidden_field :account_id
+.form-group= f.text_field :name, class: 'form-control invisible-border', placeholder: 'Nom'
+.form-group= f.text_field :description, class: 'form-control invisible-border', placeholder: 'Description'
+.form-group= f.text_field :amount, class: 'form-control invisible-border', placeholder: 'Montant'
+.form-group= f.text_field :date, class: 'form-control invisible-border datepicker', placeholder: 'Date'
+.form-group= f.text_field :date_from, class: 'form-control invisible-border datepicker', placeholder: 'Du'
+.form-group= f.text_field :date_to, class: 'form-control invisible-border datepicker', placeholder: 'Au'
+.form-group= f.select(:frequency, options_for_select(@frequencies_for_select, f.object.frequency), {}, { class: 'select2 fluid' })

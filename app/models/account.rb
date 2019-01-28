@@ -15,12 +15,14 @@ class Account < ActiveRecord::Base
   validates :name, presence: true
 
   has_many :operations
+  has_many :incomes, -> { where('amount >= 0') }, class_name: 'Operation'
+  has_many :outcomes, -> { where('amount < 0') }, class_name: 'Operation'
   has_many :simulated_account_operations
 
   def fold_simulated_operations_until(to_date)
     simulated_account_operations.delete_all
     # start_date = Date.parse(Figaro.env.application_start_date)
-    (sold_date..to_date).each do |day|
+    (sold_date.to_date..to_date.to_date).each do |day|
       puts "Processing day: #{day}"
       operations.each do |operation|
         if operation.is_on_day?(day)
@@ -34,6 +36,20 @@ class Account < ActiveRecord::Base
   def sold_at(date)
     raise 'Given date was lower than or equal to last sold date' if date <= sold_date
     fold_simulated_operations_until(date)
-    simulated_account_operations.map(&:amount).inject{|sum,x| sum + x }
+    sold + simulated_account_operations.map(&:amount).inject(:+)
+  end
+
+  def incomes_amount(frequency = nil)
+    sum_operations('incomes', frequency)
+  end
+
+  def outcomes_amount(frequency = nil)
+    sum_operations('outcomes', frequency)
+  end
+
+  def sum_operations(type = nil, frequency = nil)
+    filtered = (type == 'incomes' ? incomes : outcomes)
+    filtered = filtered.where(frequency: frequency) if frequency
+    filtered.map(&:amount).inject(:+)
   end
 end

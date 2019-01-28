@@ -21,7 +21,8 @@
 
 en:
   frequency:
-    yearly: 'annuelle'
-    monthly: 'mensuelle'
-    weekly: 'hebdomadaire'
-    daily: 'quotidienne'
+    yearly: 'yearly'
+    monthly: 'monthly'
+    weekly: 'weekly'
+    daily: 'daily'
+    punctual: 'punctual'

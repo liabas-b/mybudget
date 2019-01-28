@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       post :sold_at
     end
   end
-  resources :operations, only: [:create, :destroy]
+  resources :operations, only: [:create, :destroy, :edit, :update]
 
   root to: 'welcome#index'
 end

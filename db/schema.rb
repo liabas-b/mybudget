@@ -42,8 +42,7 @@ ActiveRecord::Schema.define(version: 20160113131641) do
   create_table "simulated_account_operations", force: true do |t|
     t.float    "amount"
     t.datetime "date"
-    t.integer  "income_id"
-    t.integer  "outcome_id"
+    t.integer  "operation_id"
     t.integer  "account_id"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -6,7 +6,7 @@
         .col-md-6.text-center
           %h1 Créer un compte
         .col-md-3
-= form_for(@new_account, remote: true, class: 'form-inline') do |f|
+= form_for(@new_account, class: 'form-inline') do |f|
   .row
     .col-md-12.card.white.condensed
       .card-inner
@@ -36,3 +36,9 @@
               %span#account-sold-date= @new_account.sold_date.strftime('%d/%m/%Y')
             = f.text_field :sold, class: 'form-control very-light invisible-border'
           .col-md-3
+  .row
+    .col-md-12.card.white.condensed
+      .card-inner
+        .row
+          .col-md-12
+            %button.btn.btn-success.fluid{:type => "submit"} CREER

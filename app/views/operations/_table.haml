@@ -1,21 +1,55 @@
+.row
+  .col-md-6.text-center
+    %label.light-label Incomes
+    %ul
+      - Operation::FREQUENCIES.each do |frequency|
+        - amount = @account.incomes_amount(frequency)
+        - if amount
+          %li
+            = "#{I18n.t('frequency.' + frequency)}: "
+            %span.success= amount
+  .col-md-6.text-center
+    %label.light-label Outcomes
+    %ul
+      - Operation::FREQUENCIES.each do |frequency|
+        - amount = @account.outcomes_amount(frequency)
+        - if amount
+          %li
+            = "#{I18n.t('frequency.' + frequency)}: "
+            %span.danger= amount
+%br/
 %table.table.table-condensed.table-hover
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th Income
+      %th Outcome
+      %th Date
+      %th From Date
+      %th To Date
+      %th Frequency
+      %th Manage
   %tbody
     - @operations.each do |operation|
       %tr
-        %th.col-md-2= operation.name
-        %td.col-md-4= operation.description
-        %td.col-md-1
-          %div{ class: "#{operation.is_income? ? 'success' : 'danger' } pull-right right-padded" }
-            %strong= "#{number_with_precision(operation.amount, locale: :fr, precision: 2)}€"
-        %td.col-md-1= operation.date.strftime('%d/%m/%Y')
-        %td.col-md-1= operation.date_from.strftime('%d/%m/%Y') if operation.date_from
-        %td.col-md-1= operation.date_to.strftime('%d/%m/%Y') if operation.date_to
+        %th= operation.name
+        %td= operation.description
         %td
-          - if operation.is_recurrent?
-            = I18n.t("frequency.#{operation.frequency}").upcase
-          - else
-            PONCTUELLE
+          - if operation.is_income?
+            %strong.success.pull-right.right-padded= "#{number_with_precision(operation.amount, locale: :fr, precision: 2)}€"
         %td
-          = form_for(operation, url: operation_path(id: operation.id, account_id: @account.id.to_s), method: :delete, remote: true, html: { class: 'remove-operation pull-right' }) do |f|
-            %button#remove-operation.btn.btn-danger.btn-xs.rounded{ type: 'button' }
+          - if operation.is_outcome?
+            %strong.danger.pull-right.right-padded= "#{number_with_precision(operation.amount, locale: :fr, precision: 2)}€"
+        %td= I18n.l(operation.date.to_date)
+        %td= I18n.l(operation.date_from.to_date) if operation.date_from
+        %td= I18n.l(operation.date_to.to_date) if operation.date_to
+        %td= I18n.t("frequency.#{operation.frequency}").upcase
+        %td
+          = form_for(operation, method: :delete, remote: true, html: { class: 'pull-right' }) do |f|
+            %button.btn.btn-danger.btn-xs.rounded{ type: 'submit' }
               %i.glyphicon.glyphicon-trash
+          = form_tag(edit_operation_path(operation), method: :get, remote: true, html: { class: 'pull-right' }) do
+            %button.btn.btn-primary.btn-xs.rounded{ type: 'submit' }
+              %i.glyphicon.glyphicon-edit
+#edit-operation-modal-container

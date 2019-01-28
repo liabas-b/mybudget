@@ -10,10 +10,10 @@
           .col-md-6.text-center
             %label.light-label
               Solde le
-              %span#account-sold-date= @account.sold_date.strftime('%d/%m/%Y')
+              %span#account-sold-date= I18n.l(@account.sold_date)
             = f.text_field :sold, class: 'form-control invisible-border', placeholder: 'Solde courrant'
 .row
-  .col-md-12.card.title-background
+  .col-md-12.card.title
     .card-inner
       Opérations
       %a#add-operation.btn.btn-xs.btn-success.pull-right.rounded{"data-target" => "#add-operation-modal", "data-toggle" => "modal", :role => "button", :tabindex => "0"}
@@ -25,41 +25,14 @@
         = render 'operations/table'
 
 .row
-  .col-md-12.card.title-background
+  .col-md-12.card.title
     .card-inner
       Simulation
       = form_tag(:sold_at_account, url: sold_at_account_path(@account), method: :post, remote: true, class: 'form-inline pull-right', id: 'simulation-form') do
         .form-group
           .input-group
-            = text_field_tag 'simulation[date]', @default_simulation_date.strftime('%d/%m/%Y'), class: 'form-control datepicker invisible-border invisible-background', placeholder: 'Date'
+            = text_field_tag 'simulation[date]', I18n.l(@default_simulation_date), class: 'form-control datepicker invisible-border', placeholder: 'Date'
             %span.input-group-btn
               %button.btn.btn-success{:type => "submit"} LANCER
 #simulation-results
-
-#add-operation-modal.modal.fade{:role => "dialog", :tabindex => "-1"}
-  .modal-dialog.modal-lg{:role => "document"}
-    .modal-content
-      = form_tag(operations_path, method: :post, remote: true, id: 'new_operation') do
-        .modal-header
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
-          %h4.modal-title OPERATION
-        .modal-body
-          .form-group
-            = text_field_tag 'operation[name]', nil, class: 'form-control invisible-border', placeholder: 'Nom'
-          .form-group
-            = text_field_tag 'operation[description]', nil, class: 'form-control invisible-border', placeholder: 'Description'
-          .form-group
-            = text_field_tag 'operation[amount]', nil, class: 'form-control invisible-border', placeholder: 'Montant'
-          .form-group
-            = text_field_tag 'operation[date]', nil, class: 'form-control invisible-border datepicker', placeholder: 'Date'
-          .form-group
-            = text_field_tag 'operation[date_from]', nil, class: 'form-control invisible-border datepicker', placeholder: 'Du'
-          .form-group
-            = text_field_tag 'operation[date_to]', nil, class: 'form-control invisible-border datepicker', placeholder: 'Au'
-          .form-group
-            = select_tag('operation[frequency]', options_for_select(@frequencies_for_select), { class: 'select2 fluid', prompt: 'Fréquence'})
-          = hidden_field_tag 'operation[account_id]', @account.id.to_s
-        .modal-footer
-          %button.btn.btn-success{:type => "submit"} CREER
-          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} FERMER
+= render 'operations/new_modal'

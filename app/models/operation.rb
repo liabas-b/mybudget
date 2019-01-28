@@ -17,11 +17,19 @@
 #
 
 class Operation < ActiveRecord::Base
+  FREQUENCIES = %w[punctual daily weekly monthly yearly]
+
   belongs_to :account
 
   validates :name, presence: true
   validates :date, presence: true
   validates :amount, presence: true
+
+  before_save :pad_date_to_month
+
+  def pad_date_to_month
+    self.date = date.change(day: 28) if date.day > 28
+  end
 
   def to_simulated_account_operation(operation_date = nil)
     { amount: amount, date: operation_date || date, operation_id: id }
@@ -40,15 +48,13 @@ class Operation < ActiveRecord::Base
   end
 
   def matches_recurring_date?(day)
-    return false unless is_recurrent?
-    return false unless (date_from && date_from <= day) && (date_to && date_to >= day)
+    return false if date_from && date_to && !(date_from..date_to).include?(day)
     case frequency
     when 'daily'
       true
     when 'weekly'
       day.wday == date.wday
     when 'monthly'
-      # if day.days_in_month > date.mday
       day.mday == date.mday
     when 'yearly'
       day.yday == date.yday
@@ -56,9 +62,4 @@ class Operation < ActiveRecord::Base
       false
     end
   end
-
-  def processed_amount
-    is_income? ? amount : -amount
-  end
-
 end

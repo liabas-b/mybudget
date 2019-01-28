@@ -1,9 +1,11 @@
 class AccountsController < ApplicationController
   before_filter :init_accounts
+  before_filter :frequencies_for_select, only: [:show]
 
   def show
     init_account(params[:id])
     @default_simulation_date = Date.today.end_of_month
+    @operation = Operation.new(account_id: @account.id)
   end
 
   def update
@@ -27,5 +29,9 @@ class AccountsController < ApplicationController
   end
 
   def create
+    @account = Account.create(params.require(:account).permit(:name, :description, :sold).merge(sold_date: Date.today))
+    if @account.errors.blank?
+      redirect_to account_path(@account)
+    end
   end
 end
